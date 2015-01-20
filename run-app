@@ -1,0 +1,4 @@
+ #!/bin/bash
+ mongod --fork --logpath ./mongod.log
+ echo "Starting mongoDB server"
+ python main.py
