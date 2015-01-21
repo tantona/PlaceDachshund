@@ -2,8 +2,128 @@
 <html>
 <title>PlaceDachshund: Dachshund Placeholders!</title>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+	<link href="../static/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<script src="../static/jquery.min.js"></script>
+	<script src="../static/pace.min.js"></script>
+	<link href="../static/bootstrap.min.css" rel="stylesheet">
+
+	<link href='../static/open-sans.css' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../static/animate.css" />
 	<style>
+
+		@-webkit-keyframes blink {
+		    0% {
+		        opacity:1;
+		    }
+		    50% {
+		        opacity:0;
+		    }
+		    100% {
+		        opacity:1;
+		    }
+		}
+		@-moz-keyframes blink {
+		    0% {
+		        opacity:1;
+		    }
+		    50% {
+		        opacity:0;
+		    }
+		    100% {
+		        opacity:1;
+		    }
+		}
+		.blink {
+		-webkit-transition: all 1s ease-in-out;
+		    -moz-transition: all 1s ease-in-out;
+		    -o-transition: all 1s ease-in-out;
+		    -ms-transition: all 1s ease-in-out;
+		    transition: all 1s ease-in-out;
+		    
+		    -webkit-animation-direction: normal;
+		    -webkit-animation-duration: 2s;
+		    -webkit-animation-iteration-count: infinite;
+		    -webkit-animation-name: blink;
+		    -webkit-animation-timing-function: ease-in-out;
+		    
+		-moz-animation-direction: normal;
+		    -moz-animation-duration: 2s;
+		    -moz-animation-iteration-count: infinite;
+		    -moz-animation-name: blink;
+		    -moz-animation-timing-function: ease-in-out;    
+		}
+
+		.pace {
+		  -webkit-pointer-events: none;
+		  pointer-events: none;
+
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  user-select: none;
+		}
+
+		.pace-inactive {
+		  display: none;
+		}
+
+		.pace .pace-progress {
+		  background: #65635c;
+		  position: fixed;
+		  z-index: 2000;
+		  top: 0;
+		  right: 100%;
+		  width: 100%;
+		  height: 2px;
+		}
+
+		body{
+			font-family:'Open Sans','Helvetica';
+			font-weight:100;
+			background-color:#f4f4f2;
+		}
+
+		p {
+			font-size:18px;
+		}
+
+		code{
+			font-size:15px;
+		}
+
+		.wrapper{
+			background-color: #669798;
+			color:#FFFFFF;
+		}
+
+		.jumbotron{
+			background-color:transparent;
+			margin-bottom:0px !important;
+		}
+
+		.jumbotron > h1, .jumbotron > p{
+			text-align:center;
+		}
+
+		h1 .fa-paw{
+			-ms-transform: rotate(15deg);
+			-webkit-transform: rotate(15deg);
+			transform: rotate(15deg);
+			padding-left: 20px;
+		}
+
+		.loading-div{
+			width: 530px;
+			color: #97958b;
+			padding-top: 130px;
+		}
+
+		.loading-div > p {
+			text-align:center;
+		}
+
+		.loading-div > p > i{
+			font-size:28px;
+		}
 
 		.picture-container{
 			width: 610px;
@@ -15,6 +135,7 @@
 
 		.picture-container > img{
 			float: left;
+			display:none;
 		}
 
 		#img0{
@@ -44,19 +165,38 @@
 			border:2px solid #FFF;
 		}
 	</style>
+
+
+	<script>
+	$(window).load(function() {
+		$('.picture-container img').each(function(i){
+			if( i % 2 === 0){
+				$(this).addClass('animated flipInY')
+			}else{
+				$(this).addClass('animated flipInX')	
+			}
+			$('.loading-div').hide();
+			$(this).show();
+			
+		})
+    // this will fire after the entire page is loaded, including images
+	});
+	</script>
 </head>
 	<body>
-		<div class="container-fluid">
-			<div class="jumbotron">
-				<h1>Welcome to PlaceDachshund!</h1>
-				<p class="lead">For all your Dachshund image placeholder needs!</p>
-			</div>
-			<hr>
-		</div>
+	<div class="wrapper">
 		<div class="container">
+			<div class="jumbotron">
+				<h1>Welcome to PlaceDachshund!<span class="fa fa-paw"></span></h1>
+				<p class="lead animated pulse">For all your Dachshund image placeholder needs!</p>
+			</div>
+			
+		</div>
+	</div>
+		<div class="container" style="padding-top: 50px;">
 			<div class="row">
 				<div class="col-md-5">
-					<h2>Finally!</h2>
+					<h2><b>Finally!</b></h2>
 					<hr>
 					<p>So you've scoured the internet for placeholder images that fulfill your desire for Dachsund placeholders...You probably came across cool sites like <a href="http://placekitten.com">PlaceKitten.com</a> and <a href="http://placehold.it/">Placehold.it</a> but alas... no Dachshunds!</p>
 					<p>After a weekend of coding with my sweet Dachshund JoZ - PlaceDachshund was born!</p>
@@ -66,15 +206,31 @@
 
 				</div>
 				<div class="col-md-7">
+					<div class="loading-div blink">
+						<p>
+							<i class="fa fa-cog fa-spin"></i>
+						</p>
+						<p>Loading Dachshunds...</p>
+					</div>
 					<div class="picture-container">
-						<img id="img0" src="http://localhost:8888/80/140" />
-						<img id="img1" src="http://localhost:8888/200/288" />
-						<img id="img2" src="http://localhost:8888/200/140" />
-						<img id="img4" src="http://localhost:8888/100/66" />
-						<img id="img5" src="http://localhost:8888/100/66" />
-						<img id="img3" src="http://localhost:8888/200/140" />
-						<img id="img6" src="http://localhost:8888/100/66" />
-						<img id="img7" src="http://localhost:8888/100/66" />
+						<img id="img0" src="http://localhost:8888/200/140?1" />
+						<img id="img0" src="http://localhost:8888/200/140?2" />
+						<img id="img0" src="http://localhost:8888/100/140?3" />
+					</div>
+					
+					<div class="picture-container">
+						
+						<img id="img1" src="http://localhost:8888/200/288?2" />
+						<img id="img2" src="http://localhost:8888/200/140?3" />
+						
+						<img id="img4" src="http://localhost:8888/100/66?1" />
+						
+						<img id="img5" src="http://localhost:8888/100/66?2" />
+
+						<img id="img3" src="http://localhost:8888/200/140?5" />
+						<img id="img6" src="http://localhost:8888/100/66?3" />
+						<img id="img7" src="http://localhost:8888/100/66?4" />
+						
 					</div>
 				</div>
 			</div>
